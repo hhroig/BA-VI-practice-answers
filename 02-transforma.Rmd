@@ -159,9 +159,13 @@ FALSE & NA
 NA * 0
 ```
 **R/**
+
 * `NA^0` es `0` porque $x^0 = 1$ para todo $x$.
-* `NA | TRUE` es `NA | TRUE` porque si el valor faltante fuera `TRUE`: entonces `TRUE | TRUE == TRUE`. Si el faltante es `FALSE`, entonces `FALSE | TRUE == TRUE`.
+
+* `NA | TRUE` es ` TRUE` porque si el valor faltante fuera `TRUE`: entonces `TRUE | TRUE == TRUE`. Si el faltante es `FALSE`, entonces `FALSE | TRUE == TRUE`.
+
 * `FALSE & NA` es `FALSE`. Si el `NA` es `TRUE`: `TRUE & FALSE == FALSE`. Si el `NA` fuera `FALSE`: `FALSE & FALSE == FALSE`.
+
 * `NA * 0` es `0`, porque tiene en cuenta las indeterminaciones $\pm \infty \times 0$, en cuyo caso el resultdo sería `NaN`. Para cualquier $x\neq \pm \infty$ tendríamos `x * 0 == 0`.
 
 
@@ -209,7 +213,7 @@ arrange(flights, desc(dep_delay))
 arrange(flights, dep_delay)
 ```
 
-10. Ordena los vuelos de forma tal que permita encuentra los de mayor velocidad.
+10. Ordena los vuelos de forma tal que permita encontrar los de mayor velocidad.
 
 **R/**
 
@@ -264,7 +268,7 @@ También dispondremos de las "funciones de ayuda a la selección":
 * `contains("ijk")`: columnas que contienen la expresión “ijk”.
 * `matches(""[pt]xyz"")`: selecciona variables que coinciden con una expresión regular.
 * `num_range("x", 1:3)`: equivalente a seleccionr: `paste0("x", 1:3)`.
-* `everuthing()`: selecciona todas las variables. Útil si deseamos poner algunas columnas de interés al incio, porque `select()` no incluye columnas repetidas:
+* `everything()`: selecciona todas las variables. Útil si deseamos poner algunas columnas de interés al incio, porque `select()` no incluye columnas repetidas:
 
 ```{r}
 flights %>%

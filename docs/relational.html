@@ -221,9 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="datos-3" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Datos</h2>
 <p>Vamos a trabajar con los datos de <code>nycflights13</code>: <code>airlines</code>, <code>airports</code>, <code>planes</code>, <code>weather</code></p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="relational.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb269-2"><a href="relational.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb269-3"><a href="relational.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;airlines&quot;</span>, <span class="st">&quot;airports&quot;</span>, <span class="st">&quot;planes&quot;</span>, <span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="relational.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb266-2"><a href="relational.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb266-3"><a href="relational.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;airlines&quot;</span>, <span class="st">&quot;airports&quot;</span>, <span class="st">&quot;planes&quot;</span>, <span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
 <p>Las relaciones entre ellos se resumen en:</p>
 <ul>
 <li><code>flights</code> con <code>planes</code> a través de la variable <code>tailnum</code>.</li>
@@ -235,68 +235,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="keys" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Keys</h2>
 <p>La variable <code>tailnum</code> es un identificador único de cada avión para los datos <code>planes</code>:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="relational.html#cb270-1" aria-hidden="true" tabindex="-1"></a>planes <span class="sc">%&gt;%</span> </span>
-<span id="cb270-2"><a href="relational.html#cb270-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tailnum) <span class="sc">%&gt;%</span> </span>
-<span id="cb270-3"><a href="relational.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="relational.html#cb267-1" aria-hidden="true" tabindex="-1"></a>planes <span class="sc">%&gt;%</span> </span>
+<span id="cb267-2"><a href="relational.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tailnum) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-3"><a href="relational.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 0 x 2
 ## # ... with 2 variables: tailnum &lt;chr&gt;, n &lt;int&gt;</code></pre>
 <p>Algunas tablas no tienen un <em>key</em> primario. ¿Qué crees de estos casos? ¿Tienen sentido? ¿Se te ocurre alguna otra combinación de variables que pueda identificar de forma única a cada observación?</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="relational.html#cb272-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb272-2"><a href="relational.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, flight) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-3"><a href="relational.html#cb272-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb272-4"><a href="relational.html#cb272-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb272-5"><a href="relational.html#cb272-5" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb272-6"><a href="relational.html#cb272-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, tailnum) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-7"><a href="relational.html#cb272-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="relational.html#cb269-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb269-2"><a href="relational.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, flight) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-3"><a href="relational.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb269-4"><a href="relational.html#cb269-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-5"><a href="relational.html#cb269-5" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb269-6"><a href="relational.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, tailnum) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-7"><a href="relational.html#cb269-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Recuerda que podemos añadir una <em>surrogate key</em>:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="relational.html#cb273-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb273-2"><a href="relational.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, month, day, sched_dep_time, carrier, flight) <span class="sc">%&gt;%</span></span>
-<span id="cb273-3"><a href="relational.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb273-4"><a href="relational.html#cb273-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="relational.html#cb270-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb270-2"><a href="relational.html#cb270-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, month, day, sched_dep_time, carrier, flight) <span class="sc">%&gt;%</span></span>
+<span id="cb270-3"><a href="relational.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb270-4"><a href="relational.html#cb270-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div>
 </div>
 <div id="mutating-joins" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Mutating Joins</h2>
 <p>Primero vamos a reducir un poco la cantidad de columnas de <code>flights</code> para notar las columnas añadidas:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="relational.html#cb274-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb274-2"><a href="relational.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest, tailnum, carrier)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="relational.html#cb271-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb271-2"><a href="relational.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest, tailnum, carrier)</span></code></pre></div>
 <p>Veamos cómo definir la key/clave de referencia:</p>
 <ul>
 <li>Por defecto: <code>by = NULL</code> usa las variables comunes a ambas tablas:</li>
 </ul>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="relational.html#cb275-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
-<span id="cb275-2"><a href="relational.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(weather)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="relational.html#cb272-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
+<span id="cb272-2"><a href="relational.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(weather)</span></code></pre></div>
 <ul>
 <li>Podemos introducir un vector de caracteres <code>by = x</code>, donde <code>x</code> es alguna de las columnas en común. A continuación, lo hacemos para <code>by = tailnum</code>. ¿Qué son <code>year.x</code> y <code>year.y</code>?</li>
 </ul>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="relational.html#cb276-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
-<span id="cb276-2"><a href="relational.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="relational.html#cb273-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
+<span id="cb273-2"><a href="relational.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Podemos introducir un vector de caracteres con nombre: <code>by = c("a" = "b")</code>. Esto empareja las variables <code>a</code> (de la tabla <code>x</code>) y <code>b</code> (de la tabla <code>y</code>). Por ejemplo, para combinar <code>flights</code> y <code>airports</code> necesitamos combinar el destino (<code>dest</code>) u origen (<code>origin</code>) en <code>fligths</code> con el código de cada aeropuerto (<code>faa</code>) en <code>airports</code>:</li>
 </ul>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="relational.html#cb277-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
-<span id="cb277-2"><a href="relational.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>))</span>
-<span id="cb277-3"><a href="relational.html#cb277-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-4"><a href="relational.html#cb277-4" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
-<span id="cb277-5"><a href="relational.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="relational.html#cb274-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
+<span id="cb274-2"><a href="relational.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>))</span>
+<span id="cb274-3"><a href="relational.html#cb274-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-4"><a href="relational.html#cb274-4" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span> </span>
+<span id="cb274-5"><a href="relational.html#cb274-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>))</span></code></pre></div>
 <div id="ejercicios-17" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Ejercicios:</h3>
 <ol style="list-style-type: decimal">
 <li>Añadir latitud y longitud (<code>lat</code> y <code>lon</code>) del origen y destino a la tabla <code>flights</code>.</li>
 </ol>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="relational.html#cb278-1" aria-hidden="true" tabindex="-1"></a>airport_locations <span class="ot">&lt;-</span> airports <span class="sc">%&gt;%</span></span>
-<span id="cb278-2"><a href="relational.html#cb278-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(faa, lat, lon)</span>
-<span id="cb278-3"><a href="relational.html#cb278-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb278-4"><a href="relational.html#cb278-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb278-5"><a href="relational.html#cb278-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest) <span class="sc">%&gt;%</span></span>
-<span id="cb278-6"><a href="relational.html#cb278-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb278-7"><a href="relational.html#cb278-7" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
-<span id="cb278-8"><a href="relational.html#cb278-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
-<span id="cb278-9"><a href="relational.html#cb278-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb278-10"><a href="relational.html#cb278-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb278-11"><a href="relational.html#cb278-11" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
-<span id="cb278-12"><a href="relational.html#cb278-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
-<span id="cb278-13"><a href="relational.html#cb278-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="relational.html#cb275-1" aria-hidden="true" tabindex="-1"></a>airport_locations <span class="ot">&lt;-</span> airports <span class="sc">%&gt;%</span></span>
+<span id="cb275-2"><a href="relational.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(faa, lat, lon)</span>
+<span id="cb275-3"><a href="relational.html#cb275-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-4"><a href="relational.html#cb275-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb275-5"><a href="relational.html#cb275-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest) <span class="sc">%&gt;%</span></span>
+<span id="cb275-6"><a href="relational.html#cb275-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb275-7"><a href="relational.html#cb275-7" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
+<span id="cb275-8"><a href="relational.html#cb275-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
+<span id="cb275-9"><a href="relational.html#cb275-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb275-10"><a href="relational.html#cb275-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb275-11"><a href="relational.html#cb275-11" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
+<span id="cb275-12"><a href="relational.html#cb275-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
+<span id="cb275-13"><a href="relational.html#cb275-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 10
 ##     year month   day  hour origin dest  lat.x lon.x lat.y lon.y
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -311,22 +311,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  2013     1     1     6 JFK    MCO    40.6 -73.8  28.4 -81.3
 ## 10  2013     1     1     6 LGA    ORD    40.8 -73.9  42.0 -87.9
 ## # ... with 336,766 more rows</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="relational.html#cb280-1" aria-hidden="true" tabindex="-1"></a>airport_locations <span class="ot">&lt;-</span> airports <span class="sc">%&gt;%</span></span>
-<span id="cb280-2"><a href="relational.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(faa, lat, lon)</span>
-<span id="cb280-3"><a href="relational.html#cb280-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb280-4"><a href="relational.html#cb280-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb280-5"><a href="relational.html#cb280-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest) <span class="sc">%&gt;%</span></span>
-<span id="cb280-6"><a href="relational.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb280-7"><a href="relational.html#cb280-7" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
-<span id="cb280-8"><a href="relational.html#cb280-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
-<span id="cb280-9"><a href="relational.html#cb280-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb280-10"><a href="relational.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb280-11"><a href="relational.html#cb280-11" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
-<span id="cb280-12"><a href="relational.html#cb280-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>),</span>
-<span id="cb280-13"><a href="relational.html#cb280-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">&quot;_origin&quot;</span>, <span class="st">&quot;_dest&quot;</span>)</span>
-<span id="cb280-14"><a href="relational.html#cb280-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># las variables lat y lon existentes en el tibble toman el sufijo _origin</span></span>
-<span id="cb280-15"><a href="relational.html#cb280-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># las nuevas lat y lon tendrán el sufijo _dest</span></span>
-<span id="cb280-16"><a href="relational.html#cb280-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="relational.html#cb277-1" aria-hidden="true" tabindex="-1"></a>airport_locations <span class="ot">&lt;-</span> airports <span class="sc">%&gt;%</span></span>
+<span id="cb277-2"><a href="relational.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(faa, lat, lon)</span>
+<span id="cb277-3"><a href="relational.html#cb277-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-4"><a href="relational.html#cb277-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb277-5"><a href="relational.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, origin, dest) <span class="sc">%&gt;%</span></span>
+<span id="cb277-6"><a href="relational.html#cb277-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb277-7"><a href="relational.html#cb277-7" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
+<span id="cb277-8"><a href="relational.html#cb277-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>)</span>
+<span id="cb277-9"><a href="relational.html#cb277-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb277-10"><a href="relational.html#cb277-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb277-11"><a href="relational.html#cb277-11" aria-hidden="true" tabindex="-1"></a>    airport_locations,</span>
+<span id="cb277-12"><a href="relational.html#cb277-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>),</span>
+<span id="cb277-13"><a href="relational.html#cb277-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">&quot;_origin&quot;</span>, <span class="st">&quot;_dest&quot;</span>)</span>
+<span id="cb277-14"><a href="relational.html#cb277-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># las variables lat y lon existentes en el tibble toman el sufijo _origin</span></span>
+<span id="cb277-15"><a href="relational.html#cb277-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># las nuevas lat y lon tendrán el sufijo _dest</span></span>
+<span id="cb277-16"><a href="relational.html#cb277-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 10
 ##     year month   day  hour origin dest  lat_origin lon_origin lat_dest lon_dest
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -346,10 +346,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="filtering-joins" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Filtering Joins</h2>
 <p>Los semi-joins son útiles cuando hacemos un resumen de los datos y luego queremos emparejar estos resultados con las observaciones originales. Por ejemplo, si calculamos los 10 destinos más populares:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="relational.html#cb282-1" aria-hidden="true" tabindex="-1"></a>top_dest <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb282-2"><a href="relational.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb282-3"><a href="relational.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb282-4"><a href="relational.html#cb282-4" aria-hidden="true" tabindex="-1"></a>top_dest</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="relational.html#cb279-1" aria-hidden="true" tabindex="-1"></a>top_dest <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb279-2"><a href="relational.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb279-3"><a href="relational.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb279-4"><a href="relational.html#cb279-4" aria-hidden="true" tabindex="-1"></a>top_dest</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    dest      n
 ##    &lt;chr&gt; &lt;int&gt;
@@ -364,23 +364,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 MIA   11728
 ## 10 DCA    9705</code></pre>
 <p>… y luego queremos encontrar todos los vuelos (en <code>flights</code>) que tuvieron este destino:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="relational.html#cb284-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb284-2"><a href="relational.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(top_dest)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="relational.html#cb281-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb281-2"><a href="relational.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(top_dest)</span></code></pre></div>
 <p>Los anti-joins son útiles para diagnosticar las discrepancias en las uniones. Por ejemplo, en <code>planes</code> hay aviones que no aparecen en <code>flights</code>:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="relational.html#cb285-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb285-2"><a href="relational.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(planes, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb285-3"><a href="relational.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tailnum, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="relational.html#cb282-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb282-2"><a href="relational.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(planes, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb282-3"><a href="relational.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tailnum, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div id="ejercicios-18" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Ejercicios</h3>
 <ol start="2" style="list-style-type: decimal">
 <li>Encuentra otra forma de obtener el mismo resultado que:</li>
 </ol>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="relational.html#cb286-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb286-2"><a href="relational.html#cb286-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(top_dest)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="relational.html#cb283-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb283-2"><a href="relational.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(top_dest)</span></code></pre></div>
 <p>sin usar <code>semi_join()</code>. Hint: Filtrar los destinos de <code>flights</code> de acuerdo a los 10 más populares.</p>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="relational.html#cb287-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb287-2"><a href="relational.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">%in%</span> top_dest<span class="sc">$</span>dest)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="relational.html#cb284-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb284-2"><a href="relational.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">%in%</span> top_dest<span class="sc">$</span>dest)</span></code></pre></div>
 <pre><code>## # A tibble: 141,145 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
@@ -401,15 +401,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Filtra <code>flights</code> para que solo recoja los datos de aquellos aviones que han volado al menos 100 veces.</li>
 </ol>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="relational.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usando semi-join</span></span>
-<span id="cb289-2"><a href="relational.html#cb289-2" aria-hidden="true" tabindex="-1"></a>planes_gte100 <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb289-3"><a href="relational.html#cb289-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">%&gt;%</span></span>
-<span id="cb289-4"><a href="relational.html#cb289-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tailnum) <span class="sc">%&gt;%</span></span>
-<span id="cb289-5"><a href="relational.html#cb289-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb289-6"><a href="relational.html#cb289-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
-<span id="cb289-7"><a href="relational.html#cb289-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-8"><a href="relational.html#cb289-8" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb289-9"><a href="relational.html#cb289-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(planes_gte100, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="relational.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usando semi-join</span></span>
+<span id="cb286-2"><a href="relational.html#cb286-2" aria-hidden="true" tabindex="-1"></a>planes_gte100 <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb286-3"><a href="relational.html#cb286-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">%&gt;%</span></span>
+<span id="cb286-4"><a href="relational.html#cb286-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tailnum) <span class="sc">%&gt;%</span></span>
+<span id="cb286-5"><a href="relational.html#cb286-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb286-6"><a href="relational.html#cb286-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb286-7"><a href="relational.html#cb286-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-8"><a href="relational.html#cb286-8" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb286-9"><a href="relational.html#cb286-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(planes_gte100, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 228,390 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
@@ -426,12 +426,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 228,380 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
 ## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 ## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="relational.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sin semi-join</span></span>
-<span id="cb291-2"><a href="relational.html#cb291-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb291-3"><a href="relational.html#cb291-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">%&gt;%</span></span>
-<span id="cb291-4"><a href="relational.html#cb291-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tailnum) <span class="sc">%&gt;%</span></span>
-<span id="cb291-5"><a href="relational.html#cb291-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb291-6"><a href="relational.html#cb291-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="relational.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sin semi-join</span></span>
+<span id="cb288-2"><a href="relational.html#cb288-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb288-3"><a href="relational.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">%&gt;%</span></span>
+<span id="cb288-4"><a href="relational.html#cb288-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tailnum) <span class="sc">%&gt;%</span></span>
+<span id="cb288-5"><a href="relational.html#cb288-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb288-6"><a href="relational.html#cb288-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 228,390 x 20
 ## # Groups:   tailnum [1,217]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time

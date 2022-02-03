@@ -638,86 +638,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ejercicios-5" class="section level4" number="2.4.6.1">
 <h4><span class="header-section-number">2.4.6.1</span> Ejercicios</h4>
 <ol start="17" style="list-style-type: decimal">
-<li>Un tercer parámetro de posición para los diagramas de barras es <code>position = "identity"</code>. Modifica el ajuste de posición del siguiente código y compara la idoneidad del mismo con el obtenido para <code>position = "dodge"</code>. Hint: considera añadir algo de transparencia (e.g. <code>alpha = 0.5</code>) o quitar el relleno por completo (i.e. <code>fill = NA</code>).</li>
-</ol>
-<p><strong>R/</strong></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualiza.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
-<span id="cb59-2"><a href="visualiza.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">fill =</span> clarity))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualiza.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
-<span id="cb60-2"><a href="visualiza.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">color =</span> clarity), </span>
-<span id="cb60-3"><a href="visualiza.html#cb60-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="visualiza.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
-<span id="cb61-2"><a href="visualiza.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">fill =</span> clarity), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<ol start="18" style="list-style-type: decimal">
 <li>Los diagramas de cajas se logran con <code>geom_boxplot</code>. Este tipo de gráficos permiten comparar las distribuciones de una variable continua para diferentes grupos o clases. Por ejemplo, para los datos <code>mpg</code> podemos comparar la distribución del consumo de acuerdo al tipo de tracción:</li>
 </ol>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualiza.html#cb62-1" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb62-2"><a href="visualiza.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb62-3"><a href="visualiza.html#cb62-3" aria-hidden="true" tabindex="-1"></a>p_box</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualiza.html#cb59-1" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="visualiza.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb59-3"><a href="visualiza.html#cb59-3" aria-hidden="true" tabindex="-1"></a>p_box</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Consulta la ayuda de <code>geom_jitter</code> e incluye las observaciones como puntos superpuestos al diagrama de cajas. Deberías obtener algo como esto:</p>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="visualiza.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb63-2"><a href="visualiza.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.colour =</span> <span class="st">&quot;hotpink&quot;</span>) <span class="sc">+</span></span>
-<span id="cb63-3"><a href="visualiza.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
-<span id="cb63-4"><a href="visualiza.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
-<ol start="19" style="list-style-type: decimal">
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualiza.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="visualiza.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.colour =</span> <span class="st">&quot;hotpink&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="visualiza.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb60-4"><a href="visualiza.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<ol start="18" style="list-style-type: decimal">
 <li>Modifica <code>p_box</code> para que represente también la información relativa al tipo de vehículo (variable <code>class</code>). ¿Puedes identificar el <em>ajuste de posición</em> por defecto de <code>geom_boxplot</code>?</li>
 </ol>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="visualiza.html#cb64-1" aria-hidden="true" tabindex="-1"></a>p_box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb64-2"><a href="visualiza.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span>
-<span id="cb64-3"><a href="visualiza.html#cb64-3" aria-hidden="true" tabindex="-1"></a>p_box2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="visualiza.html#cb61-1" aria-hidden="true" tabindex="-1"></a>p_box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="visualiza.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span>
+<span id="cb61-3"><a href="visualiza.html#cb61-3" aria-hidden="true" tabindex="-1"></a>p_box2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>Es “dodge2”, que es un shortcut para “position_dodge2”. Lo que hace es mover las cajas en la horizontal (sin afectar la vertical), para evitar el solapamiento de cajas.</p>
-<ol start="20" style="list-style-type: decimal">
+<ol start="19" style="list-style-type: decimal">
 <li>Cambia la orientación de los diagramas de cajas de verticales a horizontales. Hint: consulta la documentación de <code>coord_flip</code>.</li>
 </ol>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="visualiza.html#cb65-1" aria-hidden="true" tabindex="-1"></a>p_box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb65-2"><a href="visualiza.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span><span class="fu">coord_flip</span>()</span>
-<span id="cb65-3"><a href="visualiza.html#cb65-3" aria-hidden="true" tabindex="-1"></a>p_box2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
-<ol start="21" style="list-style-type: decimal">
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualiza.html#cb62-1" aria-hidden="true" tabindex="-1"></a>p_box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="visualiza.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span><span class="fu">coord_flip</span>()</span>
+<span id="cb62-3"><a href="visualiza.html#cb62-3" aria-hidden="true" tabindex="-1"></a>p_box2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<ol start="20" style="list-style-type: decimal">
 <li>Consulta la documentación de <code>coord_polar</code> y construye un diagrama circular (“de pastel”) de la variable tipo de tracción (<code>drv</code>).</li>
 </ol>
 <p><strong>R/</strong></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="visualiza.html#cb66-1" aria-hidden="true" tabindex="-1"></a>pie <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="dv">1</span>), <span class="at">fill =</span> <span class="fu">factor</span>(drv))) <span class="sc">+</span></span>
-<span id="cb66-2"><a href="visualiza.html#cb66-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
-<span id="cb66-3"><a href="visualiza.html#cb66-3" aria-hidden="true" tabindex="-1"></a>pie <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="visualiza.html#cb63-1" aria-hidden="true" tabindex="-1"></a>pie <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="dv">1</span>), <span class="at">fill =</span> <span class="fu">factor</span>(drv))) <span class="sc">+</span></span>
+<span id="cb63-2"><a href="visualiza.html#cb63-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb63-3"><a href="visualiza.html#cb63-3" aria-hidden="true" tabindex="-1"></a>pie <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 </div>
 </div>
 <div id="resumen" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Resumen</h2>
 <p>En las secciones anteriores has asimilado la “gramática estratificada de los gráficos” (<em>The layered grammar of graphics</em>) de <code>ggplot</code>. Aunque no lo parezca ahora, ya eres capaz de construir cualquier tipo de gráfico en 2D. Resumiendo, dispones de un modelo con 7 parámetros a definir (no necesitas definirlos todos) y tantas capas de <strong>geoms</strong> como necesites:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="visualiza.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
-<span id="cb67-2"><a href="visualiza.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
-<span id="cb67-3"><a href="visualiza.html#cb67-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
-<span id="cb67-4"><a href="visualiza.html#cb67-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
-<span id="cb67-5"><a href="visualiza.html#cb67-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
-<span id="cb67-6"><a href="visualiza.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb67-7"><a href="visualiza.html#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb67-8"><a href="visualiza.html#cb67-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="visualiza.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb64-2"><a href="visualiza.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
+<span id="cb64-3"><a href="visualiza.html#cb64-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
+<span id="cb64-4"><a href="visualiza.html#cb64-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
+<span id="cb64-5"><a href="visualiza.html#cb64-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
+<span id="cb64-6"><a href="visualiza.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="visualiza.html#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb64-8"><a href="visualiza.html#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
 <p>Finalmente, podemos añadir otros 2 parámetros a este modelo que te permitirán modificar otros elementos necesarios a la hora de “comunicar” con tus gráficos (título, leyenda, etiquetado de los ejes, escala de los ejes, etc.):</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="visualiza.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
-<span id="cb68-2"><a href="visualiza.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
-<span id="cb68-3"><a href="visualiza.html#cb68-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
-<span id="cb68-4"><a href="visualiza.html#cb68-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
-<span id="cb68-5"><a href="visualiza.html#cb68-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
-<span id="cb68-6"><a href="visualiza.html#cb68-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb68-7"><a href="visualiza.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb68-8"><a href="visualiza.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb68-9"><a href="visualiza.html#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>SCALE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb68-10"><a href="visualiza.html#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>THEME_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="visualiza.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb65-2"><a href="visualiza.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
+<span id="cb65-3"><a href="visualiza.html#cb65-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
+<span id="cb65-4"><a href="visualiza.html#cb65-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
+<span id="cb65-5"><a href="visualiza.html#cb65-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
+<span id="cb65-6"><a href="visualiza.html#cb65-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb65-7"><a href="visualiza.html#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb65-8"><a href="visualiza.html#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb65-9"><a href="visualiza.html#cb65-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>SCALE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb65-10"><a href="visualiza.html#cb65-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>THEME_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
 <div id="ejercicios-6" class="section level4" number="2.5.0.1">
 <h4><span class="header-section-number">2.5.0.1</span> Ejercicios</h4>
-<ol start="22" style="list-style-type: decimal">
+<ol start="21" style="list-style-type: decimal">
 <li>Cambia la escala y tema de algunos de los gráficos que has desarrollado. Hint: en el <em>Cheatsheet: Data Visualization with ggplot2</em> tienes un resumen muy completo de las herramientas que necesitas.</li>
 </ol>
 
